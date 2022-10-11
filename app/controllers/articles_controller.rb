@@ -37,5 +37,12 @@ class ArticlesController < ApplicationController
         render 'new'
         end    
     end    
+
+    def destroy        
+        @article = Article.find(params[:id])
+        # destory doesn't needs to be saved
+        @article.destroy
+        redirect_to articles_path
+    end    
         
 end
