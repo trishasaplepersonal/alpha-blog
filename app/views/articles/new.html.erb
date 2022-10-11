@@ -1,17 +1,5 @@
 <h1> Add new article here </h1>
 
-<% if @article.errors.any? %>
-<h2>The following errors prevented the article from being saved</h2> 
-    <% @article.errors.full_messages.each do |msg| %>
-        <%= msg %>
-    <% end %>    
-<% end %>
-<%= form_with scope: :article, url: articles_path,data: { turbo: false }, local: true do |f| %>
-<%= f.label :title %>
-<%= f.text_field :title %>
-<%= f.label :description %>
-<%= f.text_area :description %>
-<%= f.submit %>
-<% end %>
+<%= render 'form' %>
 
 <p><%= link_to "Back to listing", articles_path() %></p>
