@@ -7,13 +7,18 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "custom", media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column">
+  
+  <%= render 'layouts/navigation' %>
+  
   <% flash.each do |type, msg|%>
     <%= msg %>
    <% end %> 
   <%= yield %>
+  <%= render 'layouts/footer' %>
   </body>
 </html>
