@@ -1,22 +1,27 @@
+<div id="page-content" >
+<h1 class="text-center mt-4">Listing all articles</h1>
 
-<h1>Listing all articles</h1>
 
-<div>
-<p><%= link_to "Create new article", new_article_path() %></p>
-<div>
-<table>
-<tr><th>Id</th><th>Title</th><th>Description</th><th colspan="3">Actions</th></tr>
-
+<div class="container">
 <% @articles.each do |article| %>
-    <tr>
-    <td><%= article.id %></td>
-    <td><%= article.title %></td>
-    <td><%= article.description %></td>
-    <td><%= link_to "Show", article_path(article) %></td>
-    <td><%= link_to "Delete", article_path(article), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'} %></td>
-    <td><%= link_to "Edit", edit_article_path(article) %></td>
-    </tr>
+<div class="card text-center shadow mb-5 bg-white rounded mt-5">
+  <div class="card-header font-italic">
+    by Trisha Saple
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"><%= link_to article.title, article_path(article), class: "text-success" %></h5>
+    <p class="card-text"><%= article.description.truncate(100) %></p>    
+    <%= link_to "View", article_path(article),class:"btn btn-outline-success"  %>
+    <%= link_to "Edit", edit_article_path(article),class:"btn btn-outline-info" %>
+    <%= link_to "Delete", article_path(article), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'},class:"btn btn-outline-danger" %>
+  </div>
+  <div class="card-footer">
+  Created at <%= time_ago_in_words(article.created_at)%> ago, Edited at <%= time_ago_in_words(article.updated_at)%> ago
+  </div>
+</div>
+
 <% end %>
-</table>
+
+<p><%= link_to "Create new article", new_article_path(), class:"text-success" %></p>
 </div>
 <div>
