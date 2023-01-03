@@ -1,0 +1,11 @@
+command to start app: 
+1 Go to the desired app folder in terminal
+2 rails s
+
+
+for deploying to heroku
+1 heroku login
+2 bundle install --without production
+3 commit changes to master branch
+4 git push heroku master
+5 heroku open
