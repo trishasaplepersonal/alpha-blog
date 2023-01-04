@@ -1,0 +1,22 @@
+<h1 class="text-center mt-4">Listing all users</h1>
+
+
+<div class="container">
+<% @users.each do |user| %>
+<div class="card text-center shadow mb-5 bg-white rounded mt-5">
+  
+  <div class="card-body">
+    <h5 class="card-title"><%= user.username %></h5>
+    <p class="card-text"><%= user.email %></p>       
+  </div>
+
+  <div class="card-footer">
+  Created at <%= time_ago_in_words(user.created_at)%> ago, Edited at <%= time_ago_in_words(user.updated_at)%> ago
+  </div>
+
+</div>
+
+<% end %>
+
+
+</div>
