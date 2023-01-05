@@ -4,7 +4,7 @@ class UsersController < ApplicationController
         @users = User.all
     end
     def show
-        
+        @articles = @user.articles
     end   
     def new
         @user = User.new
