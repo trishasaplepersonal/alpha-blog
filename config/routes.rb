@@ -9,4 +9,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
    root "welcomes#index"
+   get 'login', to: 'session#login'
+   post 'login', to: 'session#authenticate'
+   get 'logout', to: 'session#logout'
 end

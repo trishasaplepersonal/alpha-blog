@@ -1,0 +1,16 @@
+<h1 class="text-center mt-4">Login</h1>
+ <div class="container">
+ 
+ 
+ <div class="form-group">
+ <%= form_with(scope: :session, local: true, data: { turbo: false }, method: :post)  do |f| %> 
+ <%= f.label :email,class:"col-sm-2 col-form-label" %>
+ <%= f.email_field :email, class:"col-sm-10 form-control", placeholder: "email" %>
+ <%= f.label :password,class:"col-sm-2 col-form-label" %>
+ <%= f.password_field :password, class:"col-sm-10 form-control", placeholder: "enter password here" %>
+ <%= f.submit("Login" ,class:"btn btn-primary mt-3") %>
+ <% end %>
+ </div>
+ 
+ 
+</div>
