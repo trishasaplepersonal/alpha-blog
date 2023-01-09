@@ -1,7 +1,9 @@
 class ArticlesController < ApplicationController
 
     before_action :set_article, only: [:show, :edit, :update, :destroy]
-    before_action :set_article, only: [:show, :edit, :update, :destroy]
+    before_action :require_login, except: [:show, :index]
+    before_action :loginuser_same, only: [:edit, :destroy]
+
     def index
         @articles = Article.paginate(page: params[:page], per_page: 5)
     end
@@ -30,8 +32,8 @@ class ArticlesController < ApplicationController
 
     def create
         #white listing the params
-        @article = Article.new(article_params)        
-        @article.user = User.first
+        @article = Article.new(article_params)                
+        @article.user_id = current_user.id
         if @article.save
         flash[:notice]            = "Article save successfully."
         redirect_to @article
@@ -50,10 +52,20 @@ class ArticlesController < ApplicationController
 
     def set_article
         @article = Article.find(params[:id])
+    rescue ActiveRecord::RecordNotFound =>e 
+        flash[:alert] = 'Article not found'
+        redirect_to root_path
     end    
 
     def article_params
         params.require(:article).permit(:title, :description)
     end    
+
+    def loginuser_same
+         if  current_user.id != @article.user.id
+flash[:alert] = 'Not permitted action'
+            redirect_to root_path
+         end
+    end        
         
 end
