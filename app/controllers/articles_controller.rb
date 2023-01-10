@@ -62,7 +62,7 @@ class ArticlesController < ApplicationController
     end    
 
     def loginuser_same
-         if  current_user.id != @article.user.id
+         if  current_user.id != @article.user.id && !current_user.admin?
 flash[:alert] = 'Not permitted action'
             redirect_to root_path
          end
