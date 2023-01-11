@@ -16,7 +16,7 @@ def authenticate
         session[:user_id] = @user.id
         redirect_to @user
     else
-        flash.now[:alert] = "something is wrong"
+        flash.now[:alert] = "Username or password is not correct!!!"
         render 'login'
     end
 

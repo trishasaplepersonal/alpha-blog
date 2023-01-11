@@ -16,11 +16,21 @@
   <%= render 'layouts/navigation' %>
   <div id="page-content">
   <% if flash.any? %>
-  <div class="alert alert-success container" role="alert">
+ 
   <% flash.each do |type, msg|%>
+    <% case type
+    when 'notice'
+        cls = 'alert-success'        
+    when 'alert'
+          cls = 'alert-danger'          
+    else
+          cls = 'alert-check'        
+        end %>
+    <div class="alert <%=cls%> container" role="alert">
     <%= msg %>
+    </div>
    <% end %> 
-   </div>
+  
    <% end %>   
   <%= yield %>
   </div>
