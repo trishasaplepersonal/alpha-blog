@@ -12,4 +12,5 @@ Rails.application.routes.draw do
    get 'login', to: 'session#login'
    post 'login', to: 'session#authenticate'
    get 'logout', to: 'session#logout'
+   resources :categories
 end
