@@ -9,7 +9,7 @@ def logout
     redirect_to root_path
 end
 
-def authenticate
+def authenticate    
     @user = User.find_by(email: params[:session] [:email])
     if @user && @user.authenticate(params[:session] [:password])
         flash[:notice] = "you logged in successfully"

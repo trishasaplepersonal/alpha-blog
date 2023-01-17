@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
 
+    before_action :admin_login, except: [:index, :show]
     before_action :set_category, except: [:index, :create, :new]
 
     def show
@@ -55,4 +56,11 @@ class CategoriesController < ApplicationController
      flash[:alert] = 'Category not found'
      redirect_to root_path
     end
+
+    def admin_login
+        if !(logged_in? && current_user.admin) 
+            flash[:alert] = 'Only admins are permitted for this action'
+            redirect_to categories_path
+        end
+    end    
 end
